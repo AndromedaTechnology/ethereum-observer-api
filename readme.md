@@ -1,14 +1,16 @@
-<h1 align="center">Firestarter API - Progressive Startup API Boilerplate</h1>
+<h1 align="center">Ethereum Observer API</h1>
 <p align="center">
-  <a href="https://firestarter-api.andromeda.technology"><img src="./storage/static/hero.jpg"  alt="Firestarter API" /></a>
+  <a href="https://ethereum-observer-api.andromeda.technology"><img src="./storage/static/hero.jpg"  alt="Ethereum Observer API" /></a>
   <br />
   <br />
-  <a href="https://firestarter-api.andromeda.technology">Progressive Startup API Boilerplate</a>
+  <a href="https://ethereum-observer-api.andromeda.technology">Simple tracker for Ethereum Network</a>
   <br />
-  <a href="https://firestarter-api.andromeda.technology">https://firestarter-api.andromeda.technology</a>
+  <a href="https://ethereum-observer-api.andromeda.technology">https://ethereum-observer-api.andromeda.technology</a>
 </p>
 
-Easy to extend, Progressive and Scalable API boilerplate to power your startup.
+Simple `block and transaction tracker` for [Ethereum network](https://ethereum.org).
+
+Uses a `Smart Contract` to save short summary for each day.
 
 ## 1. Technology
 
@@ -19,18 +21,37 @@ Easy to extend, Progressive and Scalable API boilerplate to power your startup.
 - Testing: [Jest](https://jestjs.io/): SuperTest, MongoDBMemoryServer,
 - [Docker](https://www.docker.com/): MongoDB.
 
+**Blockchain**
+
+- Ethereum,
+- Smart Contract: [Solidity](https://docs.soliditylang.org/),
+  - only this app can write to the Contract,
+  - anyone can read it's state.
+
+**Communication with the Ethereum Network**
+
+- Using [ethers.js](https://docs.ethers.io/v5/) for calls to Ethereum network,
+- Subscribing to [events](https://docs.ethers.io/v5/api/providers/provider/#Provider--events),
+  - Event: `block`: new block is mined.
+
 ## 2. Usage
 
 1. Clone the repo,
 2. Duplicate `.env.example` files in [`./`,`/docker/`] to `.env`; modify as needed,
 3. Have `Docker` [installed](https://www.docker.com/get-started), run the containers and your app (check the instructions below),
-4. Add modules (routes, controllers, services, tests) to `/src` (duplicate Message module, adjust to your needs),
+4. Add modules (routes, controllers, services, tests) to `/src`,
 5. List newly added modules (features) here (Readme.md) and in your POSTMAN collection.
 
 ## 3. Features
 
-1. Message Module,
-2. [Add your modules/features here]
+1. Watches for [block](https://ethereum.org/en/developers/docs/blocks/) creation, stores it in the local DB,
+2. For every created block: pulls all [transactions](https://ethereum.org/en/developers/docs/transactions/) and stores them in the local DB,
+3. For every day that passes: storing [`totalBlockAmount`,`totalGasAmount`] in a simple Smart Contract, using [Solidity](https://docs.soliditylang.org/).
+
+Modules
+
+1. Network: start/stop network observation,
+2. Block,
 
 All API routes are prefixed by `API_PREFIX` (defined in`.env`) (default: `/api`).
 
@@ -77,9 +98,7 @@ npm run test
 
 ## 6. Postman
 
-[Postman Documentation](https://documenter.getpostman.com/view/97483/UUy67k8N)
-
-- (Link your Postman Documentation here)
+[Postman Documentation](https://documenter.getpostman.com/view/97483/UUy7aPBG)
 
 Pre-set environment variables:
 
@@ -130,7 +149,7 @@ Andromeda
 
 ## 10. Rest
 
-Hero image source: [FireStarter, gilad, DevianArt](https://www.deviantart.com/gilad/art/Firestarter-25634515).
+Hero image source: [EthereumPrice.org](https://ethereumprice.org).
 
 ## 11. Related
 

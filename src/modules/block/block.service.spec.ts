@@ -4,8 +4,10 @@ import mongoose, { Mongoose } from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
 import { app } from "../../index";
-import messageService from "./message.service";
 import { databaseSetup } from "../../database";
+
+import seed from "./block.seed";
+import service from "./block.service";
 
 // Server
 let server: Server;
@@ -39,51 +41,56 @@ afterAll(async () => {
 });
 
 let itemId: mongoose.Types.ObjectId | undefined;
-const content = "Inspired";
-const contentUpdated = "Tenacious";
+const blockToBeSeeded = seed.blocks[0];
+const gasUsedUpdated = "22222222";
 
-describe("message.service", () => {
+describe("block.service", () => {
   it("create", async () => {
-    const response = await messageService.create({
-      content: content,
-    });
+    const response = await service.create(blockToBeSeeded);
 
     expect(response).toBeDefined();
     expect(response._id).toBeDefined();
-    expect(response.content).toEqual(content);
+    expect(response.gasUsed).toEqual(blockToBeSeeded.gasUsed);
 
     itemId = response._id;
   });
 
   it("findAll", async () => {
-    const response = await messageService.findAll();
+    const response = await service.findAll();
 
     expect(response).toBeDefined();
-    expect(response[0].content).toEqual(content);
+    expect(response[0].gasUsed).toEqual(blockToBeSeeded.gasUsed);
   });
 
   it("find", async () => {
-    const response = await messageService.find(itemId!);
+    const response = await service.find(itemId!);
 
     expect(response).toBeDefined();
     expect(response._id).toEqual(itemId);
   });
 
   it("update", async () => {
-    const response = await messageService.update(itemId!, {
-      content: contentUpdated,
+    const response = await service.update(itemId!, {
+      gasUsed: gasUsedUpdated,
     });
 
     expect(response).toBeDefined();
     expect(response._id).toEqual(itemId);
-    expect(response.content).toEqual(contentUpdated);
+    expect(response.gasUsed).toEqual(gasUsedUpdated);
   });
 
   it("delete", async () => {
-    const response = await messageService.delete(itemId!);
+    const response = await service.delete(itemId!);
 
     expect(response).toBeDefined();
     expect(response._id).toEqual(itemId);
-    expect(response.content).toEqual(contentUpdated);
+    expect(response.gasUsed).toEqual(gasUsedUpdated);
+  });
+
+  it("deleteAll", async () => {
+    const response = await service.deleteAll();
+
+    expect(response).toBeDefined();
+    expect(response.ok).toEqual(1);
   });
 });
