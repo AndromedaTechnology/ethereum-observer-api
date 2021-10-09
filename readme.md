@@ -164,7 +164,16 @@ Hero image source: [EthereumPrice.org](https://ethereumprice.org).
 
 ## 11. Related
 
-[🏄 Habitus](https://github.com/AndromedaTechnology/habitus)
+[🚀 FireStarter API - Progressive Startup API Boilerplate](https://github.com/moltouni/firestarter-api)
+
+- Easy to extend, Progressive and Scalable API boilerplate to power your startup,
+- TypeScript,
+- Koa.js
+- MongoDB,
+- Jest,
+- Docker.
+
+[🏄 Habitus - Journal, Habit, Emotion tracker](https://github.com/AndromedaTechnology/habitus)
 
 - State-of-the-art tracker for emotions, habits and thoughts,
 - Healthiest version of you,
