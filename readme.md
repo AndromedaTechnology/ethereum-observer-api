@@ -168,7 +168,7 @@ Hero image source: [EthereumPrice.org](https://ethereumprice.org).
 
 - Easy to extend, Progressive and Scalable API boilerplate to power your startup,
 - TypeScript,
-- Koa.js
+- Koa.js,
 - MongoDB,
 - Jest,
 - Docker.
