@@ -18,6 +18,14 @@ class NetworkHelper {
   }
 
   /**
+   * Get Network Name
+   */
+  async getNetworkName(): Promise<string> {
+    const network = await this.provider.getNetwork();
+    return network.name;
+  }
+
+  /**
    * Get Last Block Number
    */
   async getLastBlockNumber(): Promise<number> {
