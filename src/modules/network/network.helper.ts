@@ -1,4 +1,6 @@
 import { ethers } from "ethers";
+
+import config from "../../config/index";
 import BlockService from "../block/block.service";
 
 export const EthereumEventNameBlock = "block";
@@ -7,7 +9,7 @@ class NetworkHelper {
   private provider: ethers.providers.BaseProvider;
 
   constructor() {
-    this.provider = ethers.getDefaultProvider();
+    this.provider = ethers.getDefaultProvider(config.ethereum_network_name);
   }
 
   /**
