@@ -42,6 +42,17 @@ Uses a `Smart Contract` to save short summary for each day.
 4. Add modules (routes, controllers, services, tests) to `/src`,
 5. List newly added modules (features) here (Readme.md) and in your POSTMAN collection.
 
+### 2.1. Starting/stopping the observer
+
+Observed data will be saved to the local database, and later - to a Smart Contract, as a daily summary.
+
+- Start: `POST [API_PREFIX]/network`
+- Stop: `DELETE [API_PREFIX]/network`
+
+`[API_PREFIX]` is defined in `.env`; defaults to `/api` .
+
+_Note: Use the Postman Collection linked below._
+
 ## 3. Features
 
 1. Watches for [block](https://ethereum.org/en/developers/docs/blocks/) creation, stores it in the local DB,
