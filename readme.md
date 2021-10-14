@@ -10,7 +10,9 @@
 
 Simple `block and transaction tracker` for [Ethereum network](https://ethereum.org).
 
-Uses a `Smart Contract` to save short summary for each day.
+Uses a `Smart Contract` to save a short summary for each day (**check the [Smart Contract repository](https://github.com/AndromedaTechnology/ethereum-observer-contract-hardhat)**).
+
+Use it as a `scalable boilerplate for communication with the Ethereum network` and/or a learning resource.
 
 ## 1. Technology
 
@@ -164,7 +166,16 @@ Hero image source: [EthereumPrice.org](https://ethereumprice.org).
 
 ## 11. Related
 
-[🚀 FireStarter API - Progressive Startup API Boilerplate](https://github.com/moltouni/firestarter-api)
+[🔭 Ethereum Observer - Smart Contract - Hardhat, TypeScript](https://github.com/AndromedaTechnology/ethereum-observer-contract-hardhat)
+
+- Simple `Ethereum Smart Contract` that stores a `Daily Summary` of **[Ethereum Observer API](https://github.com/AndromedaTechnology/ethereum-observer-api)**,
+- TypeScript,
+- Hardhat,
+- Solidity,
+- Ethers.js,
+- Waffle.
+
+[🚀 FireStarter API - Progressive Startup API Boilerplate](https://github.com/AndromedaTechnology/firestarter-api)
 
 - Easy to extend, Progressive and Scalable API boilerplate to power your startup,
 - TypeScript,

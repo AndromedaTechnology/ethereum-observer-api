@@ -28,7 +28,9 @@ const envSchema = Joi.object()
     DB_PASSWORD: Joi.string().optional().default(""),
 
     // ETHEREUM
-    ETHEREUM_NETWORK_NAME: Joi.string().optional().default("rinkeby"),
+    ETHEREUM_NETWORK_NAME: Joi.string().optional().default("ropsten"),
+    ETHEREUM_CONTRACT_ADDRESS: Joi.string().optional().default(null),
+    ETHEREUM_PRIVATE_KEY: Joi.string().optional().default(null),
   })
   .unknown()
   .required();
@@ -58,6 +60,8 @@ export interface IConfig {
   db_uri: string;
   // ETHEREUM
   ethereum_network_name: string;
+  ethereum_contract_address: string;
+  ethereum_private_key: string;
 }
 
 const db_uri_additional = `?authSource=admin&w=1`;
@@ -76,5 +80,7 @@ const config: IConfig = {
   db_uri: envVars.DB_URI ?? db_uri, // If available, env.DB_URI is preferred over other db vars
   // ETHEREUM
   ethereum_network_name: envVars.ETHEREUM_NETWORK_NAME,
+  ethereum_contract_address: envVars.ETHEREUM_CONTRACT_ADDRESS,
+  ethereum_private_key: envVars.ETHEREUM_PRIVATE_KEY,
 };
 export default config;
