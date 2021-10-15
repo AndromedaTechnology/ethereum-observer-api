@@ -21,7 +21,7 @@ Use it as a `scalable boilerplate for communication with the Ethereum network` a
 - Database: [MongoDB](https://www.mongodb.com/): [Mongoose](https://mongoosejs.com/),
 - Config: [Dotenv](https://www.npmjs.com/package/dotenv), [Joi](https://joi.dev/),
 - Testing: [Jest](https://jestjs.io/): SuperTest, MongoDBMemoryServer,
-- [Docker](https://www.docker.com/): MongoDB.
+- [Docker](https://www.docker.com/): MongoDB, Redis.
 
 **Blockchain**
 
@@ -63,8 +63,9 @@ _Note: Use the Postman Collection linked below._
 
 Modules
 
-1. Network: start/stop network observation,
-2. Block,
+1. Network: start/stop network observation, calling Summary.sync on block creation,
+2. Block: CRUD,
+3. Summary: Calculation, Syncing with the Ethereum Network,
 
 All API routes are prefixed by `API_PREFIX` (defined in`.env`) (default: `/api`).
 
@@ -72,7 +73,7 @@ All API routes are prefixed by `API_PREFIX` (defined in`.env`) (default: `/api`)
 
 **Docker**
 
-Docker provides isolated `MongoDB` for your project.
+Docker provides isolated `MongoDB` and `Redis` for your project.
 
 ```
 cd ./docker

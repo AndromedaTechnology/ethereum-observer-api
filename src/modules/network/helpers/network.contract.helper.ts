@@ -119,6 +119,7 @@ class NetworkContractHelper {
 
   /**
    * Update Contract state
+   * TODO: gas: convert to string to support BigNumber (here, contract, contractInterface)
    */
   async updateContractState(
     dayId: number,

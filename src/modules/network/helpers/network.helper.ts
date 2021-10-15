@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 
 import config from "../../../config/index";
 import BlockService from "../../block/block.service";
+import summarySyncHelper from "../../summary/helpers/summary.sync.helper";
 
 /**
  * Ethereum EventName Block
@@ -62,13 +63,15 @@ class NetworkHelper {
       /**
        * Store to the DB
        */
-      await BlockService.create({
+      const blockCreated = await BlockService.create({
         hash: block.hash,
         parentHash: block.parentHash,
         number: block.number,
         timestamp: block.timestamp,
         gasUsed: block.gasUsed.toString(),
       });
+      // Sync daily summary to Blockchain, when available
+      await summarySyncHelper.calculateAndSyncSummaryToBlockchain(blockCreated);
     }
     console.log(`New block saved: #${blockNumber}.`);
   }

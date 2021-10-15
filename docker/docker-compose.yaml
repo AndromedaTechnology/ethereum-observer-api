@@ -12,5 +12,16 @@ services:
     volumes:
       - mongodb_data_container:/data/db
 
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redis-data:/data
+      - redis-conf:/usr/local/etc/redis/redis.conf
+
 volumes:
   mongodb_data_container:
+  redis-data:
+  redis-conf:
