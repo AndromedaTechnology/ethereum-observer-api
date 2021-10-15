@@ -1,4 +1,4 @@
-import NetworkHelper from "./network.helper";
+import NetworkHelper from "./helpers/network.helper";
 
 export interface INetworkStatus {
   message?: string;
