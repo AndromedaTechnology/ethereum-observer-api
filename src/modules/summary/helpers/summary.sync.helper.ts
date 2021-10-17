@@ -32,6 +32,8 @@ class SummarySyncHelper {
       );
     }
 
+    await this.logSync(lastBlock, dateStart, dateEnd, summary);
+
     if (summary) {
       // Sync to blockchain
       for (const key of Object.keys(summary)) {
@@ -55,16 +57,36 @@ class SummarySyncHelper {
       );
     }
 
+    return summary;
+  }
+
+  private async logSync(
+    lastBlock: BlockDto,
+    dateStart?: Date,
+    dateEnd?: Date,
+    summary?: ISummaries | null
+  ) {
+    const lastSynced = await RedisHelper.getValue(
+      REDIS_KEY_LAST_SYNCED_DAY_TIMESTAMP_START_MS
+    );
+    const lastSyncedDate = lastSynced
+      ? new Date(Number.parseInt(lastSynced))
+      : undefined;
     // Console
     console.log(
-      "-sync-",
+      "- summarySyncBEGIN -",
+      `\nlastBlock:`,
       lastBlock,
-      dateStart?.getTime(),
-      dateEnd?.getTime(),
-      summary
+      `\nlastSyncedDay: (timestamp: ${lastSyncedDate?.getTime()}):`,
+      lastSyncedDate?.toString(),
+      `\ngetSummaryDateStart: (timestamp: ${dateStart?.getTime()}):`,
+      dateStart?.toString(),
+      `\ngetSummaryDateEnd: (timestamp: ${dateEnd?.getTime()}):`,
+      dateEnd?.toString(),
+      `\nsummary: `,
+      summary,
+      "\n- summarySyncEND - "
     );
-
-    return summary;
   }
 
   /**
