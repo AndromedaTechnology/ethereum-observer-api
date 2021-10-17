@@ -4,6 +4,7 @@ import {
 } from "../../../helpers/redis.helper";
 import { BlockDto } from "../../block/block.model";
 import summaryHelper, { ISummaries } from "./summary.helper";
+import networkContractHelper from "../../network/helpers/network.contract.helper";
 
 /**
  * SummarySyncHelper
@@ -37,11 +38,11 @@ class SummarySyncHelper {
     if (summary) {
       // Sync to blockchain
       for (const key of Object.keys(summary)) {
-        // await networkContractHelper.updateContractState(
-        //   Number.parseInt(key),
-        //   summary[key as any].blocks,
-        //   summary[key as any].gas
-        // );
+        await networkContractHelper.updateContractState(
+          Number.parseInt(key),
+          summary[key as any].blocks ?? 0,
+          summary[key as any].gas ?? "0"
+        );
         // Save lastSynced Date start in miliseconds
         await RedisHelper.setValue(
           REDIS_KEY_LAST_SYNCED_DAY_TIMESTAMP_START_MS,

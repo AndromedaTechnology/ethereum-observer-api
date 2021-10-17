@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 
 import config from "../../../config/index";
 
@@ -110,7 +111,6 @@ class NetworkContractHelper {
     if (!this.contract) return null;
     const val = await this.contract.getSummary(dayId);
     console.info("--GetContractState", val);
-    // https://ethereum.stackexchange.com/questions/89423/convert-hex-number-from-solidity/89430
     return {
       blocks: val["blocks"].toString(),
       gas: val["gas"].toString(),
@@ -119,15 +119,18 @@ class NetworkContractHelper {
 
   /**
    * Update Contract state
-   * TODO: gas: convert to string to support BigNumber (here, contract, contractInterface)
    */
   async updateContractState(
     dayId: number,
     blocks: number,
-    gas: number
+    gas: string
   ): Promise<any> {
     if (!this.contract) return;
-    const res = await this.contract.addSummary(dayId, blocks, gas);
+    const res = await this.contract.addSummary(
+      dayId,
+      blocks,
+      BigNumber.from(gas)
+    );
     console.info("--UpdateContractState", dayId, blocks, gas, res);
     return res;
   }
